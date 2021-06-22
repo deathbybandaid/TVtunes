@@ -30,9 +30,19 @@ class PlexInterface():
             return
 
         self.tvtunes.logger.info("Retrieving Library list.")
+        self.tv_libraries = {}
+
         sections = self.plexserver.library.sections()
+        self.tvtunes.logger.info("Found a total of %s Libaries" % len(sections))
+
         for section in sections:
-            print(section.type)
+            if section.type == "show":
+                self.tv_libraries[section.title] = {
+                                                    "uuid": section.uuid,
+                                                    "key": section.key,
+                                                    "title": section.title
+                                                    }
+        self.tvtunes.logger.info("Found a total of %s TV Show Libaries" % len(self.tv_libraries.keys()))
 
     @property
     def baseurl(self):
