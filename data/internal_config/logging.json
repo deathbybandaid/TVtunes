@@ -1,0 +1,11 @@
+{
+  "logging":{
+          "level":{
+                    "value": "NOOB",
+                    "config_file": true,
+                    "config_web": true,
+                    "valid_options": "CRITICAL,ERROR,WARNING,NOOB,INFO,DEBUG",
+                    "description": "Determines the level of logging to file as well as console output."
+                }
+  }
+}

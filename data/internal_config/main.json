@@ -1,0 +1,20 @@
+{
+  "main":{
+          "cache_dir":{
+                      "value": "none",
+                      "config_file": true,
+                      "config_web": "visible_only",
+                      "description": "The path to store the database, logs, and other files."
+                    },
+          "servicename":{
+                "value": "TVtunes",
+                "config_file": false,
+                "config_web": false
+              },
+          "reponame":{
+                          "value": "TVtunes",
+                          "config_file": false,
+                          "config_web": false
+                        }
+  }
+}

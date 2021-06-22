@@ -1,0 +1,29 @@
+{
+  "tvtunes":{
+          "address":{
+                    "value": "0.0.0.0",
+                    "config_file": true,
+                    "config_web": true,
+                    "description": "The IP address to listen on. Can be the IP of the device, or 0.0.0.0"
+                },
+          "port":{
+                  "value": 8080,
+                  "config_file": true,
+                  "config_web": true,
+                  "valid_options": "int",
+                  "description": "The port to listen at."
+                },
+          "device_auth":{
+                        "value": "TVtunes",
+                        "config_file": true,
+                        "config_web": true,
+                        "description": "Currently Unused Authentication setting."
+                      },
+          "require_auth":{
+                          "value": false,
+                          "config_file": true,
+                          "config_web": true,
+                          "description": "Currently Unused Authentication setting."
+                        }
+  }
+}
