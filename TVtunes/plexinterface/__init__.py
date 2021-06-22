@@ -1,3 +1,4 @@
+from plexapi.server import PlexServer
 
 
 class PlexInterface():
@@ -14,6 +15,8 @@ class PlexInterface():
 
     def connect(self):
         self.tvtunes.logger.info("Attempting Connection to Plex Media Server at %s:%s" % (self.address, self.port))
+
+        plex = PlexServer("http://%s:%s" % (self.address, self.port), self.token)
         self.tvtunes.logger.info("Plex Connection Setup Success")
         self.setup_success = True
 
