@@ -18,13 +18,25 @@ class PlexInterface():
         self.tvtunes.logger.info("Attempting Connection to Plex Media Server at %s:%s" % (self.address, self.port))
 
         try:
-            self.plex = PlexServer("http://%s:%s" % (self.address, self.port), self.token)
+            self.plex = PlexServer(self.baseurl, self.token)
         except plexapi.exceptions.Unauthorized:
             self.plex = None
             self.tvtunes.logger.error("Plex Connection Setup Failed: Unauthorized")
             return
+        except Exception as err:
+            self.plex = None
+            self.tvtunes.logger.error("Plex Connection Setup Failed: Unable to Connect %s" % err)
+            return
 
         self.tvtunes.logger.info("Plex Connection Setup Success")
+
+    @property
+    def baseurl(self):
+        """
+        Base URL of Plex Server.
+        """
+
+        return "http://%s:%s" % (self.address, self.port)
 
     @property
     def address(self):
