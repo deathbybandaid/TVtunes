@@ -36,6 +36,8 @@ class PlexInterface():
 
         self.tvtunes.logger.info("Found a total of %s TV Show Libaries" % len([x for x in self.plexserver.library.sections() if x.type == "show"]))
 
+        print(self.plexserver.library.section(self.plexserver.library.sections()[0].key))
+
         # self.tvtunes.logger.info("Found a total of %s TV Shows" % len(self.tv_libraries.keys()))
 
     @property
