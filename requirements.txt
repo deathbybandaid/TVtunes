@@ -3,3 +3,4 @@ gevent
 schedule
 sqlalchemy
 requests
+uuid
