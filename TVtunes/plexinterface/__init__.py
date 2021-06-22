@@ -1,4 +1,4 @@
-from plexapi.server import PlexServer
+import plexapi
 
 
 class PlexInterface():
@@ -16,7 +16,11 @@ class PlexInterface():
     def connect(self):
         self.tvtunes.logger.info("Attempting Connection to Plex Media Server at %s:%s" % (self.address, self.port))
 
-        self.plex = PlexServer("http://%s:%s" % (self.address, self.port), "fart")
+        try:
+            self.plex = plexapi.server.PlexServer("http://%s:%s" % (self.address, self.port), "fart")
+        except plexapi.exceptions.Unauthorized:
+            self.plex = None
+            self.tvtunes.logger.error("Plex Connection Setup Failed: Unauthorized")
 
         self.tvtunes.logger.info("Plex Connection Setup Success")
 
