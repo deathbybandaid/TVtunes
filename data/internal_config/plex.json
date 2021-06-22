@@ -1,0 +1,23 @@
+{
+  "plex":{
+          "address":{
+                    "value": "127.0.0.1",
+                    "config_file": true,
+                    "config_web": true,
+                    "description": "The IP address to listen on. Can be the IP of the device, or 0.0.0.0"
+                },
+          "port":{
+                  "value": 32400,
+                  "config_file": true,
+                  "config_web": true,
+                  "valid_options": "int",
+                  "description": "The port to listen at."
+                },
+          "token":{
+                        "value": "none",
+                        "config_file": true,
+                        "config_web": true,
+                        "description": "Currently Unused Authentication setting."
+                      }
+  }
+}
