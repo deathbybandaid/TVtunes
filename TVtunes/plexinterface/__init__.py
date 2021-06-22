@@ -6,4 +6,35 @@ class PlexInterface():
     """
 
     def __init__(self, tvtunes):
-        return
+        self.tvtunes = tvtunes
+
+        self.setup_success = False
+        self.connect()
+
+    def connect(self):
+        self.fhdhr.logger.info("Plex Connection Setup Success")
+        self.setup_success = True
+
+    @property
+    def address(self):
+        """
+        Address of Plex Server.
+        """
+
+        return self.config.dict["plex"]["address"]
+
+    @property
+    def port(self):
+        """
+        Port of Plex Server.
+        """
+
+        return self.config.dict["plex"]["port"]
+
+    @property
+    def token(self):
+        """
+        Token for Plex Server.
+        """
+
+        return self.config.dict["plex"]["token"]

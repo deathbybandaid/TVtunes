@@ -6,4 +6,5 @@ class TVtunes_Manager():
     """
 
     def __init__(self, tvtunes, plexinterface):
-        return
+        self.tvtunes = tvtunes
+        self.plexinterface = plexinterface
