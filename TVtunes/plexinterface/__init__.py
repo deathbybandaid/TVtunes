@@ -7,6 +7,7 @@ class PlexInterface():
 
     def __init__(self, tvtunes):
         self.tvtunes = tvtunes
+        self.config = self.tvtunes.config
 
         self.setup_success = False
         self.connect()
