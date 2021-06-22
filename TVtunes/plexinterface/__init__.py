@@ -12,7 +12,7 @@ class PlexInterface():
         self.config = self.tvtunes.config
 
         self.plexserver = None
-        self.libraries = {}
+        self.tv_libraries = {}
         self.connect()
 
     def connect(self):
@@ -29,9 +29,10 @@ class PlexInterface():
             self.tvtunes.logger.error("Plex Connection Setup Failed: Unable to Connect %s" % err)
             return
 
-        print(self.plexserver.library.sections())
-
-        self.tvtunes.logger.info("Plex Connection Setup Success")
+        self.tvtunes.logger.info("Retrieving Library list.")
+        sections = self.plexserver.library.sections()
+        for section in sections:
+            print(section)
 
     @property
     def baseurl(self):
