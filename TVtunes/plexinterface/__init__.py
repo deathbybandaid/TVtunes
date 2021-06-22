@@ -32,11 +32,17 @@ class PlexInterface():
         self.tvtunes.logger.info("Retrieving Library list.")
         self.tv_libraries = {}
 
-        self.tvtunes.logger.info("Found a total of %s Libaries" % len(self.plexserver.library.sections()))
+        total_libraries = len(self.plexserver.library.sections())
+        self.tvtunes.logger.info("Found %s Libraries" % total_libraries)
+        if not total_libraries:
+            return
 
-        self.tvtunes.logger.info("Found a total of %s TV Show Libaries" % len([x for x in self.plexserver.library.sections() if x.type == "show"]))
+        total_tv_libraries = len([x for x in self.plexserver.library.sections() if x.type == "show"])
+        self.tvtunes.logger.info("Found a %s TV Show Libaries" % total_tv_libraries)
+        if not total_tv_libraries:
+            return
 
-        print(self.plexserver.library.section(self.plexserver.library.sections()[0].title))
+        print(self.plexserver.library.section(self.plexserver.library.sections()[0].title).get())
 
         # self.tvtunes.logger.info("Found a total of %s TV Shows" % len(self.tv_libraries.keys()))
 
