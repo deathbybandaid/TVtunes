@@ -4,3 +4,4 @@ schedule
 sqlalchemy
 requests
 uuid
+plexapi
