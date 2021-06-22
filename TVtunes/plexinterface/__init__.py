@@ -12,7 +12,7 @@ class PlexInterface():
         self.connect()
 
     def connect(self):
-        self.fhdhr.logger.info("Plex Connection Setup Success")
+        self.tvtunes.logger.info("Plex Connection Setup Success")
         self.setup_success = True
 
     @property
