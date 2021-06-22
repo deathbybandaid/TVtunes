@@ -1,6 +1,8 @@
 # coding=utf-8
 
+from .manager import TVtunes_Manager
 from .api import TVtunes_API_URLs
+from .plexinterface import PlexInterface
 
 TVtunes_VERSION = "v0.9.0-beta"
 
@@ -35,6 +37,10 @@ class TVtunes_OBJ():
 
         logger.info("Initializing TVtunes Core Functions.")
         self.tvtunes = TVtunes_INT_OBJ(settings, logger, db, versions, web, scheduler, deps)
+
+        self.tvtunes.plexinterface = PlexInterface(self.tvtunes)
+
+        self.manager = TVtunes_Manager(self.tvtunes, self.tvtunes.plexinterface)
 
     def __getattr__(self, name):
         """
