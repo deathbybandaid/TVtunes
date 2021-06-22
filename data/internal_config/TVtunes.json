@@ -24,6 +24,12 @@
                           "config_file": true,
                           "config_web": true,
                           "description": "Currently Unused Authentication setting."
-                        }
+                        },
+            "friendlyname":{
+                            "value": "TVtunes",
+                            "config_file": true,
+                            "config_web": true,
+                            "description": "Currently Unused setting."
+                          }
   }
 }
