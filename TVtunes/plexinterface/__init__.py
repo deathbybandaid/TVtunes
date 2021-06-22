@@ -10,15 +10,15 @@ class PlexInterface():
         self.tvtunes = tvtunes
         self.config = self.tvtunes.config
 
-        self.setup_success = False
+        self.plex = None
         self.connect()
 
     def connect(self):
         self.tvtunes.logger.info("Attempting Connection to Plex Media Server at %s:%s" % (self.address, self.port))
 
-        plex = PlexServer("http://%s:%s" % (self.address, self.port), self.token)
+        self.plex = PlexServer("http://%s:%s" % (self.address, self.port), "fart")
+
         self.tvtunes.logger.info("Plex Connection Setup Success")
-        self.setup_success = True
 
     @property
     def address(self):
