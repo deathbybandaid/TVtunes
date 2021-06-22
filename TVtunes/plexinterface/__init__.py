@@ -11,20 +11,20 @@ class PlexInterface():
         self.tvtunes = tvtunes
         self.config = self.tvtunes.config
 
-        self.plex = None
+        self.plexserver = None
         self.connect()
 
     def connect(self):
         self.tvtunes.logger.info("Attempting Connection to Plex Media Server at %s:%s" % (self.address, self.port))
 
         try:
-            self.plex = PlexServer(self.baseurl, self.token)
+            self.plexserver = PlexServer(self.baseurl, self.token)
         except plexapi.exceptions.Unauthorized:
-            self.plex = None
+            self.plexserver = None
             self.tvtunes.logger.error("Plex Connection Setup Failed: Unauthorized")
             return
         except Exception as err:
-            self.plex = None
+            self.plexserver = None
             self.tvtunes.logger.error("Plex Connection Setup Failed: Unable to Connect %s" % err)
             return
 
