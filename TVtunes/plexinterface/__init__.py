@@ -32,7 +32,7 @@ class PlexInterface():
         self.tvtunes.logger.info("Retrieving Library list.")
         sections = self.plexserver.library.sections()
         for section in sections:
-            print(section)
+            print(section.type)
 
     @property
     def baseurl(self):
