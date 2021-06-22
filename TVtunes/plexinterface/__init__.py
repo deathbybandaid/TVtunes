@@ -13,7 +13,7 @@ class PlexInterface():
         self.connect()
 
     def connect(self):
-        self.tvtunes.logger.info("Attempting Connection to Plex Media Server at %s:%s", (self.address, self.port))
+        self.tvtunes.logger.info("Attempting Connection to Plex Media Server at %s:%s" % (self.address, self.port))
         self.tvtunes.logger.info("Plex Connection Setup Success")
         self.setup_success = True
 
