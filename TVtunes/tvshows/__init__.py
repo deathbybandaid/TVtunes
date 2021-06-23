@@ -69,6 +69,8 @@ class TVShows():
             print(list_library_shows_all[0].librarySectionTitle)
             print(list_library_shows_all[0].ratingKey)
 
+            self.plexinterface.show_theme_url(list_library_shows_all[0].librarySectionTitle, list_library_shows_all[0].title)
+
             print("   ")
 
             self.tvtunes.logger.info("Shows Import took %s" % (humanized_time(time.time() - show_scan_start)))

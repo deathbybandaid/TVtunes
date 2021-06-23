@@ -79,8 +79,16 @@ class PlexInterface():
             shows_list.extend(self.plexserver.library.section(library).all())
         return shows_list
 
-    def theme_url(self, ratingKey, b):
-        return "%s/library/metadata/%s/theme/%s?X-Plex-Token=%s" % (self.baseurl, ratingKey, b, self.token)
+    def show_theme_url(self, library, show):
+        if not self.plexserver:
+            return None
+
+        show_item = self.plexserver.library.section(library).get(show)
+        themeid = show_item.theme.split("/")[-1]
+        return self.theme_url(show_item.ratingKey, themeid)
+
+    def theme_url(self, ratingKey, themeid):
+        return "%s/library/metadata/%s/theme/%s?X-Plex-Token=%s" % (self.baseurl, ratingKey, themeid, self.token)
 
     @property
     def baseurl(self):
