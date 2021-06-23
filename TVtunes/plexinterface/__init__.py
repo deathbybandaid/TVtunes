@@ -14,6 +14,10 @@ class PlexInterface():
         self.plexserver = self.connect()
         self.log_whats_found()
 
+        first_show_lib = self.list_tv_libraries[0]
+        first_show = self.list_library_shows(first_show_lib)[0]
+        print(dir(first_show))
+
     def connect(self):
         self.tvtunes.logger.info("Attempting Connection to Plex Media Server at %s:%s" % (self.address, self.port))
 
