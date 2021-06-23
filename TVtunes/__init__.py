@@ -1,6 +1,6 @@
 # coding=utf-8
 
-from .manager import Shows
+from .shows import Shows
 from .api import TVtunes_API_URLs
 from .plexinterface import PlexInterface
 
