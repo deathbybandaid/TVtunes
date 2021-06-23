@@ -69,6 +69,7 @@ class PlexInterface():
         show_item = self.plexserver.library.section(library).get(show)
         return show_item.locations[0]
 
+    @property
     def list_library_shows_all(self):
         if not self.plexserver:
             return []
