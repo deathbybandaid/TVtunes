@@ -81,7 +81,7 @@ class PlexInterface():
             return None
 
         show_item = self.plexserver.library.section(library).get(show)
-        return show_item.locations
+        return show_item.locations[0]
 
     @property
     def baseurl(self):
