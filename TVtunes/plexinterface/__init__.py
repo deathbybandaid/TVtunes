@@ -87,6 +87,9 @@ class PlexInterface():
         themeid = show_item.theme.split("/")[-1]
         return "%s/library/metadata/%s/theme/%s?X-Plex-Token=%s" % (self.baseurl, show_item.ratingKey, themeid, self.token)
 
+    def tvdb_theme_url(self, tvdbid):
+        return "http://tvthemes.plexapp.com/%s.mp3" % tvdbid
+
     def show_tvdbid(self, library, show):
         if not self.plexserver:
             return None

@@ -70,9 +70,12 @@ class TVShows():
             show_title = list_library_shows_all[0].title
             print(show_title)
 
+            tvdbid = self.plexinterface.show_tvdbid(library, show_title)
+            print(tvdbid)
+
             print(self.plexinterface.show_location(library, show_title))
             print(self.plexinterface.show_theme_url(library, show_title))
-            print(self.plexinterface.show_tvdbid(library, show_title))
+            print(self.plexinterface.tvdb_theme_url(tvdbid))
 
             self.tvtunes.logger.info("Shows Import took %s" % (humanized_time(time.time() - show_scan_start)))
 
