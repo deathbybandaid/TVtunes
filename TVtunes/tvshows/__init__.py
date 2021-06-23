@@ -70,7 +70,7 @@ class TVShows():
             show_title = list_library_shows_all[0].librarySectionTitle
             print(show_title)
 
-            print(self.plexinterface.location(library, show_title))
+            print(self.plexinterface.show_location(library, show_title))
             print(self.plexinterface.show_theme_url(library, show_title))
             print(self.plexinterface.show_tvdbid(library, show_title))
 
