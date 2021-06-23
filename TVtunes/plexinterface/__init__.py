@@ -79,6 +79,9 @@ class PlexInterface():
             shows_list.extend(self.plexserver.library.section(library).all())
         return shows_list
 
+    def theme_url(self, a, b):
+        return "%s/library/metadata/%s/theme/%s?X-Plex-Token=%s" % (self.baseurl, a, b, self.token)
+
     @property
     def baseurl(self):
         """
