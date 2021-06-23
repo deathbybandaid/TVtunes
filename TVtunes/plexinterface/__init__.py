@@ -12,6 +12,7 @@ class PlexInterface():
         self.config = self.tvtunes.config
 
         self.plexserver = self.connect()
+        self.log_whats_found()
 
     def connect(self):
         self.tvtunes.logger.info("Attempting Connection to Plex Media Server at %s:%s" % (self.address, self.port))
@@ -24,7 +25,9 @@ class PlexInterface():
         except Exception as err:
             self.tvtunes.logger.error("Plex Connection Setup Failed: Unable to Connect %s" % err)
             return None
+        return plexserver
 
+    def log_whats_found(self):
         self.tvtunes.logger.info("Retrieving Library list.")
 
         self.tvtunes.logger.info("Found %s Libraries" % self.total_libraries)
@@ -32,8 +35,6 @@ class PlexInterface():
         self.tvtunes.logger.info("Found a %s TV Show Libaries" % self.total_tv_libraries)
 
         self.tvtunes.logger.info("Found a %s TV Shows" % self.total_tv_shows)
-
-        return plexserver
 
     @property
     def total_libraries(self):
