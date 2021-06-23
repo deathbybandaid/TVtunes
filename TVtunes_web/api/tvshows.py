@@ -3,9 +3,9 @@ import urllib.parse
 import json
 
 
-class Versions():
-    endpoints = ["/api/shows"]
-    endpoint_name = "api_shows"
+class TVShows():
+    endpoints = ["/api/tvshows"]
+    endpoint_name = "api_tvshows"
     endpoint_methods = ["GET", "POST"]
 
     def __init__(self, tvtunes):
@@ -36,14 +36,7 @@ class Versions():
                             mimetype='application/json')
 
         elif method == "scan":
-
-            available_version_dict = {}
-
-            return_json = json.dumps(available_version_dict, indent=4)
-
-            return Response(status=200,
-                            response=return_json,
-                            mimetype='application/json')
+            self.tvtunes.tvshows.get_shows(forceupdate=True)
 
         if redirect_url:
             if "?" in redirect_url:

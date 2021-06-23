@@ -8,12 +8,17 @@ class Startup_Tasks():
     def __init__(self, tvtunes):
         self.tvtunes = tvtunes
 
+        self.shows_update_url = "/api/tvshows?method=scan"
+
     def __call__(self, *args):
         return self.get(*args)
 
     def get(self, *args):
 
         self.tvtunes.logger.noob("Running Startup Tasks.")
+
+        # Update Shows List
+        self.tvtunes.api.get(self.shows_update_url)
 
         self.tvtunes.logger.noob("Startup Tasks Complete.")
 

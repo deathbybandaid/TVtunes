@@ -40,7 +40,7 @@ class TVtunes_OBJ():
 
         self.tvtunes.plexinterface = PlexInterface(self.tvtunes)
 
-        self.shows = TVShows(self.tvtunes, self.tvtunes.plexinterface)
+        self.tvshows = TVShows(self.tvtunes, self.tvtunes.plexinterface)
 
     def __getattr__(self, name):
         """

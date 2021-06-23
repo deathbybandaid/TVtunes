@@ -18,7 +18,7 @@ class TVShows():
 
         self.get_db_shows()
 
-        self.shows_update_url = "/api/shows?method=scan"
+        self.shows_update_url = "/api/tvshows?method=scan"
         self.tvtunes.scheduler.every(4).to(5).hours.do(self.tvtunes.api.threadget, url=self.shows_update_url)
 
     def get_db_shows(self):
@@ -65,7 +65,7 @@ class TVShows():
             self.tvtunes.logger.info("Found a %s TV Shows" % self.plexinterface.total_tv_shows)
 
             list_library_shows_all = self.plexinterface.list_library_shows_all
-            print(list_library_shows_all)
+            print(list_library_shows_all[0])
 
             self.tvtunes.logger.info("Shows Import took %s" % (humanized_time(time.time() - show_scan_start)))
 
