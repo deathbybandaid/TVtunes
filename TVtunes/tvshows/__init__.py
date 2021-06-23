@@ -69,7 +69,11 @@ class TVShows():
             print(list_library_shows_all[0].theme.split("/")[-1])
 
             for x in list_library_shows_all[0].guids:
-                print(dir(x))
+                print(x)
+                for y in dir(x):
+                    if not str(y).startswith("_"):
+                        print(y)
+                        print(eval("x." + y))
 
             print(self.plexinterface.show_theme_url(list_library_shows_all[0].librarySectionTitle, list_library_shows_all[0].title))
 
