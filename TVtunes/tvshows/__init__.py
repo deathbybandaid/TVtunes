@@ -64,9 +64,14 @@ class TVShows():
 
             list_library_shows_all = self.plexinterface.list_library_shows_all
             print(list_library_shows_all[0].title)
+            print(list_library_shows_all[0].guid)
             print(list_library_shows_all[0].librarySectionTitle)
-            print(list_library_shows_all[0].theme)
 
             self.tvtunes.logger.info("Shows Import took %s" % (humanized_time(time.time() - show_scan_start)))
 
         return
+
+
+"""
+['METADATA_TYPE', 'TAG', 'TYPE', '_INCLUDES', '__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__iter__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_autoReload', '_buildDetailsKey', '_buildItem', '_buildItemOrNone', '_castAttrValue', '_checkAttrs', '_clean', '_data', '_defaultSyncTitle', '_details_key', '_edit_tags', '_getAttrOperator', '_getAttrValue', '_initpath', '_isChildOf', '_loadData', '_manuallyLoadXML', '_parent', '_reload', '_server', 'actors', 'addCollection', 'addGenre', 'addLabel', 'addedAt', 'analyze', 'art', 'artBlurHash', 'artUrl', 'arts', 'audienceRating', 'audienceRatingImage', 'augmentation', 'autoDeletionItemPolicyUnwatchedLibrary', 'autoDeletionItemPolicyWatchedLibrary', 'banner', 'bannerUrl', 'banners', 'childCount', 'collections', 'contentRating', 'defaultAdvanced', 'delete', 'download', 'duration', 'edit', 'editAdvanced', 'episode', 'episodeSort', 'episodes', 'fetchItem', 'fetchItems', 'fields', 'findItems', 'firstAttr', 'fixMatch', 'flattenSeasons', 'genres', 'get', 'guid', 'guids', 'history', 'hubs', 'index', 'isFullObject', 'isPartialObject', 'isWatched', 'key', 'labels', 'languageOverride', 'lastRatedAt', 'lastViewedAt', 'leafCount', 'librarySectionID', 'librarySectionKey', 'librarySectionTitle', 'listAttrs', 'listType', 'locations', 'markUnwatched', 'markWatched', 'matches', 'merge', 'network', 'onDeck', 'optimize', 'originalTitle', 'originallyAvailableAt', 'posterUrl', 'posters', 'preference', 'preferences', 'rate', 'rating', 'ratingKey', 'refresh', 'reload', 'removeCollection', 'removeGenre', 'removeLabel', 'removeSubtitles', 'roles', 'season', 'seasons', 'section', 'setArt', 'setBanner', 'setPoster', 'showOrdering', 'similar', 'split', 'studio', 'subtitleStreams', 'summary', 'sync', 'tagline', 'theme', 'thumb', 'thumbBlurHash', 'thumbUrl', 'title', 'titleSort', 'type', 'unmatch', 'unwatched', 'updatedAt', 'uploadArt', 'uploadBanner', 'uploadPoster', 'uploadSubtitles', 'url', 'useOriginalTitle', 'userRating', 'viewCount', 'viewedLeafCount', 'watched', 'year']
+"""
