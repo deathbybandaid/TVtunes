@@ -68,12 +68,9 @@ class TVShows():
             print(list_library_shows_all[0].ratingKey)
             print(list_library_shows_all[0].theme.split("/")[-1])
 
-            for x in list_library_shows_all[0].guids:
-                print(x)
-                for y in dir(x):
-                    if not str(y).startswith("_"):
-                        print(y)
-                        print(eval("x." + y))
+            for item_guid in list_library_shows_all[0].guids:
+                if str(item_guid.id).startswith("tvdb"):
+                    print(item_guid.id)
 
             print(self.plexinterface.show_theme_url(list_library_shows_all[0].librarySectionTitle, list_library_shows_all[0].title))
 
