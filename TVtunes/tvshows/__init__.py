@@ -73,7 +73,11 @@ class TVShows():
             tvdbid = self.plexinterface.show_tvdbid(library, show_title)
             print(tvdbid)
 
-            print(self.plexinterface.show_location(library, show_title))
+            show_directory = self.plexinterface.show_location(library, show_title)
+            print(show_directory)
+            theme_file_location = "%s/theme.mp3" % show_directory
+            print(theme_file_location)
+
             print(self.plexinterface.show_theme_url(library, show_title))
             print(self.plexinterface.tvdb_theme_url(tvdbid))
 
