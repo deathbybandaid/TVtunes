@@ -63,13 +63,12 @@ class TVShows():
             self.tvtunes.logger.info("Found %s TV Shows in %s Libraries" % (self.plexinterface.total_tv_shows, self.plexinterface.total_tv_libraries))
 
             list_library_shows_all = self.plexinterface.list_library_shows_all
-            print(list_library_shows_all[0].title)
-            print(list_library_shows_all[0].theme.split("/")[-1])
-            print("1615171270")
             print(list_library_shows_all[0].librarySectionTitle)
+            print(list_library_shows_all[0].title)
             print(list_library_shows_all[0].ratingKey)
+            print(list_library_shows_all[0].theme.split("/")[-1])
 
-            self.plexinterface.show_theme_url(list_library_shows_all[0].librarySectionTitle, list_library_shows_all[0].title)
+            print(self.plexinterface.show_theme_url(list_library_shows_all[0].librarySectionTitle, list_library_shows_all[0].title))
 
             print("   ")
 
