@@ -59,13 +59,13 @@ class PlexInterface():
 
     @property
     def total_tv_shows(self):
-        for x in self.list_tv_libraries:
-            print(x)
-            print(self.list_library_shows(x))
         if not self.plexserver:
             return 0
         else:
-            return 0
+            total_shows = 0
+            for x in self.list_tv_libraries:
+                total_shows += len(self.list_library_shows(x))
+            return total_shows
 
     def list_library_shows(self, library):
         return self.plexserver.library.section(library).all()
