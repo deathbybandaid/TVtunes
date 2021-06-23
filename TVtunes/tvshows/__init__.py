@@ -58,11 +58,9 @@ class TVShows():
 
             show_scan_start = time.time()
 
-            self.tvtunes.logger.info("Found %s Libraries" % self.plexinterface.total_libraries)
+            self.tvtunes.logger.info("Found a Total of %s Libraries" % self.plexinterface.total_libraries)
 
-            self.tvtunes.logger.info("Found a %s TV Show Libaries" % self.plexinterface.total_tv_libraries)
-
-            self.tvtunes.logger.info("Found a %s TV Shows" % self.plexinterface.total_tv_shows)
+            self.tvtunes.logger.info("Found %s TV Shows in %s Libraries" % (self.plexinterface.total_tv_shows, self.plexinterface.total_tv_libraries))
 
             list_library_shows_all = self.plexinterface.list_library_shows_all
             print(list_library_shows_all[0])
