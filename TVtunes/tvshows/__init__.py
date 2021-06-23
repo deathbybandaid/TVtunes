@@ -63,7 +63,9 @@ class TVShows():
             self.tvtunes.logger.info("Found %s TV Shows in %s Libraries" % (self.plexinterface.total_tv_shows, self.plexinterface.total_tv_libraries))
 
             list_library_shows_all = self.plexinterface.list_library_shows_all
+            print(list_library_shows_all[0].title)
             print(list_library_shows_all[0].librarySectionTitle)
+            print(list_library_shows_all[0].theme)
 
             self.tvtunes.logger.info("Shows Import took %s" % (humanized_time(time.time() - show_scan_start)))
 
