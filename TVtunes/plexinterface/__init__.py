@@ -68,7 +68,7 @@ class PlexInterface():
             return 0
 
     def list_library_shows(self, library):
-        return self.plexserver.library.section(self.plexserver.library.sections(library).title).all()
+        return self.plexserver.library.sections(library).all()
 
     @property
     def baseurl(self):
