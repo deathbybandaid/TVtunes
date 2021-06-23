@@ -64,7 +64,8 @@ class TVShows():
 
             list_library_shows_all = self.plexinterface.list_library_shows_all
             print(list_library_shows_all[0].title)
-            print(list_library_shows_all[0].guid)
+            tvdb_id = list_library_shows_all[0].episodes()[0].guid.split('/')[2]
+            print(tvdb_id)
             print(list_library_shows_all[0].librarySectionTitle)
 
             self.tvtunes.logger.info("Shows Import took %s" % (humanized_time(time.time() - show_scan_start)))
