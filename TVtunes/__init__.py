@@ -1,6 +1,6 @@
 # coding=utf-8
 
-from .shows import Shows
+from .shows import TVShows
 from .api import TVtunes_API_URLs
 from .plexinterface import PlexInterface
 
@@ -40,7 +40,7 @@ class TVtunes_OBJ():
 
         self.tvtunes.plexinterface = PlexInterface(self.tvtunes)
 
-        self.shows = Shows(self.tvtunes, self.tvtunes.plexinterface)
+        self.shows = TVShows(self.tvtunes, self.tvtunes.plexinterface)
 
     def __getattr__(self, name):
         """

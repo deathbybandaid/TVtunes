@@ -5,7 +5,7 @@ from TVtunes.tools import humanized_time
 from .tvshow import TVShow
 
 
-class TVtunes_Manager():
+class TVShows():
     """
     Methods for Managing Plex shows, Shows, and their Theme Music.
     """
