@@ -67,7 +67,7 @@ class TVShows():
             library = list_library_shows_all[0].librarySectionTitle
             print(library)
 
-            show_title = list_library_shows_all[0].librarySectionTitle
+            show_title = list_library_shows_all[0].title
             print(show_title)
 
             print(self.plexinterface.show_location(library, show_title))
