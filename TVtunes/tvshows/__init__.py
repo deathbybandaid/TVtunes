@@ -64,7 +64,7 @@ class TVShows():
 
             list_library_shows_all = self.plexinterface.list_library_shows_all
             print(list_library_shows_all[0].title)
-            tvdb_id = list_library_shows_all[0].episodes()[0].guid.split('/')[2]
+            tvdb_id = list_library_shows_all[0].episodes()[0].guid
             print(tvdb_id)
             print(list_library_shows_all[0].librarySectionTitle)
 
