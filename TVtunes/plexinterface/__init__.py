@@ -85,10 +85,17 @@ class PlexInterface():
 
         show_item = self.plexserver.library.section(library).get(show)
         themeid = show_item.theme.split("/")[-1]
-        return self.theme_url(show_item.ratingKey, themeid)
+        return "%s/library/metadata/%s/theme/%s?X-Plex-Token=%s" % (self.baseurl, show_item.ratingKey, themeid, self.token)
 
-    def theme_url(self, ratingKey, themeid):
-        return "%s/library/metadata/%s/theme/%s?X-Plex-Token=%s" % (self.baseurl, ratingKey, themeid, self.token)
+    def show_tvdbid(self, library, show):
+        if not self.plexserver:
+            return None
+
+        show_item = self.plexserver.library.section(library).get(show)
+        guids = [str(item_guid.id).split("tvdb://")[-1] for item_guid in show_item.guids if str(item_guid.id).startswith("tvdb")]
+        if not len(guids):
+            return None
+        return guids[0]
 
     @property
     def baseurl(self):
