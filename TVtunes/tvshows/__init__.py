@@ -69,10 +69,12 @@ class TVShows():
             print(list_library_shows_all[0].librarySectionTitle)
             print(list_library_shows_all[0].ratingKey)
 
-            """for x in dir(list_library_shows_all[0]):
+            for x in dir(list_library_shows_all[0]):
                 if not str(x).startswith("_"):
-                    print(str(x))
-                    print(eval("list_library_shows_all[0]." + x))"""
+                    evalstr = eval("list_library_shows_all[0]." + x)
+                    if str(evalstr) == "1615171270":
+                        print(str(x))
+                        print(evalstr)
 
             self.tvtunes.logger.info("Shows Import took %s" % (humanized_time(time.time() - show_scan_start)))
 
