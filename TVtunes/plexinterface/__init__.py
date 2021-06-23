@@ -52,7 +52,7 @@ class PlexInterface():
 
     @property
     def total_tv_shows(self):
-        print(self.plexserver.library.section(self.plexserver.library.sections()[0].title))
+        print(self.plexserver.library.section(self.plexserver.library.sections()[0].title).all())
         if not self.plexserver:
             return 0
         else:
