@@ -55,11 +55,12 @@ class PlexInterface():
         if not self.plexserver:
             return []
         else:
-            return [x for x in self.plexserver.library.sections() if x.type == "show"]
+            return [x.title for x in self.plexserver.library.sections() if x.type == "show"]
 
     @property
     def total_tv_shows(self):
         for x in self.list_tv_libraries:
+            print(x)
             print(self.list_library_shows(x))
         if not self.plexserver:
             return 0
