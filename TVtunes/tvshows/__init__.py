@@ -69,7 +69,7 @@ class TVShows():
             print(list_library_shows_all[0].librarySectionTitle)
 
             for x in dir(list_library_shows_all[0]):
-                if not (str).startswith("_"):
+                if not str(x).startswith("_"):
                     print(x)
 
             self.tvtunes.logger.info("Shows Import took %s" % (humanized_time(time.time() - show_scan_start)))
