@@ -63,10 +63,16 @@ class TVShows():
             self.tvtunes.logger.info("Found %s TV Shows in %s Libraries" % (self.plexinterface.total_tv_shows, self.plexinterface.total_tv_libraries))
 
             list_library_shows_all = self.plexinterface.list_library_shows_all
-            print(list_library_shows_all[0].librarySectionTitle)
-            print(list_library_shows_all[0].title)
-            print(self.plexinterface.show_theme_url(list_library_shows_all[0].librarySectionTitle, list_library_shows_all[0].title))
-            print(self.plexinterface.show_tvdbid(list_library_shows_all[0].librarySectionTitle, list_library_shows_all[0].title))
+
+            library = list_library_shows_all[0].librarySectionTitle
+            print(library)
+
+            show_title = list_library_shows_all[0].librarySectionTitle
+            print(show_title)
+
+            print(self.plexinterface.location(library, show_title))
+            print(self.plexinterface.show_theme_url(library, show_title))
+            print(self.plexinterface.show_tvdbid(library, show_title))
 
             self.tvtunes.logger.info("Shows Import took %s" % (humanized_time(time.time() - show_scan_start)))
 
