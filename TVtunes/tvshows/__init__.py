@@ -68,15 +68,10 @@ class TVShows():
             print(list_library_shows_all[0].ratingKey)
             print(list_library_shows_all[0].theme.split("/")[-1])
 
-            print(self.plexinterface.show_theme_url(list_library_shows_all[0].librarySectionTitle, list_library_shows_all[0].title))
+            for x in list_library_shows_all[0].guids:
+                print(x)
 
-            for x in dir(list_library_shows_all[0]):
-                if not str(x).startswith("_"):
-                    evalstr = eval("list_library_shows_all[0]." + x)
-                    if "79159" in str(evalstr):
-                        print(str(x))
-                        print(evalstr)
-            print("   ")
+            print(self.plexinterface.show_theme_url(list_library_shows_all[0].librarySectionTitle, list_library_shows_all[0].title))
 
             self.tvtunes.logger.info("Shows Import took %s" % (humanized_time(time.time() - show_scan_start)))
 
