@@ -78,6 +78,9 @@ class TVShows():
             theme_file_location = "%s/theme.mp3" % show_directory
             print(theme_file_location)
 
+            theme_file_cache = "%s/theme.mp3" % self.tvtunes.config.internal["paths"]["mp3_dir"]
+            print(theme_file_cache)
+
             print(self.plexinterface.show_theme_url(library, show_title))
             print(self.plexinterface.tvdb_theme_url(tvdbid))
 

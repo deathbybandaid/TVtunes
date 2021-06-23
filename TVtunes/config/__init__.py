@@ -184,6 +184,11 @@ class Config():
 
         cache_dir = self.internal["paths"]["cache_dir"]
 
+        mp3_dir = pathlib.Path(cache_dir).joinpath('mp3')
+        self.internal["paths"]["mp3_dir"] = mp3_dir
+        if not mp3_dir.is_dir():
+            mp3_dir.mkdir()
+
         logs_dir = pathlib.Path(cache_dir).joinpath('logs')
         self.internal["paths"]["logs_dir"] = logs_dir
         if not logs_dir.is_dir():
