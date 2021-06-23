@@ -69,7 +69,7 @@ class TVShows():
             print(list_library_shows_all[0].theme.split("/")[-1])
 
             for x in list_library_shows_all[0].guids:
-                print(x)
+                print(dir(x))
 
             print(self.plexinterface.show_theme_url(list_library_shows_all[0].librarySectionTitle, list_library_shows_all[0].title))
 
