@@ -70,7 +70,7 @@ class TVShows():
 
             for x in dir(list_library_shows_all[0]):
                 if not str(x).startswith("_"):
-                    print(x)
+                    print(eval("list_library_shows_all[0]." + x))
 
             self.tvtunes.logger.info("Shows Import took %s" % (humanized_time(time.time() - show_scan_start)))
 
