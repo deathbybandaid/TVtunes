@@ -11,40 +11,51 @@ class PlexInterface():
         self.tvtunes = tvtunes
         self.config = self.tvtunes.config
 
-        self.plexserver = None
-        self.tv_libraries = {}
-        self.connect()
+        self.plexserver = self.connect()
 
     def connect(self):
         self.tvtunes.logger.info("Attempting Connection to Plex Media Server at %s:%s" % (self.address, self.port))
 
         try:
-            self.plexserver = PlexServer(self.baseurl, self.token)
+            plexserver = PlexServer(self.baseurl, self.token)
         except plexapi.exceptions.Unauthorized:
-            self.plexserver = None
             self.tvtunes.logger.error("Plex Connection Setup Failed: Unauthorized")
-            return
+            return None
         except Exception as err:
-            self.plexserver = None
             self.tvtunes.logger.error("Plex Connection Setup Failed: Unable to Connect %s" % err)
-            return
+            return None
 
         self.tvtunes.logger.info("Retrieving Library list.")
-        self.tv_libraries = {}
 
-        total_libraries = len(self.plexserver.library.sections())
-        self.tvtunes.logger.info("Found %s Libraries" % total_libraries)
-        if not total_libraries:
-            return
+        self.tvtunes.logger.info("Found %s Libraries" % self.total_libraries)
 
-        total_tv_libraries = len([x for x in self.plexserver.library.sections() if x.type == "show"])
-        self.tvtunes.logger.info("Found a %s TV Show Libaries" % total_tv_libraries)
-        if not total_tv_libraries:
-            return
+        self.tvtunes.logger.info("Found a %s TV Show Libaries" % self.total_tv_libraries)
 
-        print(self.plexserver.library.section(self.plexserver.library.sections()[0].title).get())
+        self.tvtunes.logger.info("Found a %s TV Shows" % self.total_tv_shows)
 
-        # self.tvtunes.logger.info("Found a total of %s TV Shows" % len(self.tv_libraries.keys()))
+        return plexserver
+
+    @property
+    def total_libraries(self):
+        if not self.plexserver:
+            return 0
+        else:
+            return len(self.plexserver.library.sections())
+
+    @property
+    def total_tv_libraries(self):
+        if not self.plexserver:
+            return 0
+        else:
+            return len([x for x in self.plexserver.library.sections() if x.type == "show"])
+
+    @property
+    def total_tv_shows(self):
+        print(self.plexserver.library.section(self.plexserver.library.sections()[0].title))
+        if not self.plexserver:
+            return 0
+        else:
+            return 0
 
     @property
     def baseurl(self):
