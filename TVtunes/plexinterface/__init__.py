@@ -16,7 +16,7 @@ class PlexInterface():
 
         first_show_lib = self.list_tv_libraries[0]
         first_show = self.list_library_shows(first_show_lib)[0]
-        print(self.show_location(first_show_lib, first_show))
+        self.show_location(first_show_lib, first_show)
 
     def connect(self):
         self.tvtunes.logger.info("Attempting Connection to Plex Media Server at %s:%s" % (self.address, self.port))
@@ -81,6 +81,7 @@ class PlexInterface():
             return None
 
         show_item = self.plexserver.library.section(library).get(show)
+        print(show_item)
         return show_item.locations
 
     @property
