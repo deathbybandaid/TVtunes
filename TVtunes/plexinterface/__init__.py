@@ -51,12 +51,23 @@ class PlexInterface():
             return len([x for x in self.plexserver.library.sections() if x.type == "show"])
 
     @property
+    def list_tv_libraries(self):
+        if not self.plexserver:
+            return []
+        else:
+            return [x for x in self.plexserver.library.sections() if x.type == "show"]
+
+    @property
     def total_tv_shows(self):
-        print(self.plexserver.library.section(self.plexserver.library.sections()[0].title).all())
+        for x in self.list_tv_libraries:
+            print(self.list_library_shows(x))
         if not self.plexserver:
             return 0
         else:
             return 0
+
+    def list_library_shows(self, library):
+        return self.plexserver.library.section(self.plexserver.library.sections(library).title).all()
 
     @property
     def baseurl(self):
