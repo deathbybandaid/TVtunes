@@ -98,11 +98,7 @@ class PlexInterface():
         if not self.plexserver:
             return None
 
-        try:
-            show_item = self.plexserver.library.section(library).get(show)
-        except TypeError:
-            return None
-
+        show_item = self.plexserver.library.section(library).get(show)
         guids = [str(item_guid.id).split("tvdb://")[-1] for item_guid in show_item.guids if str(item_guid.id).startswith("tvdb")]
         if not len(guids):
             return None
