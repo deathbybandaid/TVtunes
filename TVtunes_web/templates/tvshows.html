@@ -19,6 +19,7 @@
     <thead>
       <tr>
         <th>Title</th>
+        <th>Theme File</th>
       </tr>
     </thead>
 
@@ -26,7 +27,7 @@
       {% for show_dict in list(shows_info[library].keys()) %}
         <tr>
           <td>{{ shows_info[library][show_dict]["title"] }}</td>
-
+          <td>{{ shows_info[library][show_dict]["theme_file"] }}</td>
         </tr>
       {% endfor %}
     </tbody>

@@ -22,6 +22,7 @@ class TVShows_HTML():
             show_obj = self.tvtunes.tvshows.list[show_id]
             if show_obj:
                 show_dict = show_obj.dict.copy()
+                show_dict["theme_file"] = show_obj.theme_file
                 show_library = show_obj.library
 
                 if show_library not in list(shows_info.keys()):

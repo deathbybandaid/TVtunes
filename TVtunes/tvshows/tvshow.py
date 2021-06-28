@@ -1,3 +1,4 @@
+import os
 
 
 class TVShow():
@@ -50,6 +51,12 @@ class TVShow():
         self.dict["directory"] = self.plexinterface.show_location(self.library, self.title)
 
     @property
+    def theme_file(self):
+        if os.path.isfile(self.theme_file_location):
+            return self.theme_file_location
+        return None
+
+    @property
     def pms_theme_url(self):
         return self.plexinterface.pms_theme_url(self.library, self.title)
 
@@ -60,7 +67,7 @@ class TVShow():
         return self.plexinterface.plexcom_theme_url(self.tvdbid)
 
     @property
-    def theme_file(self):
+    def theme_file_location(self):
         return "%s/theme.mp3" % self.directory
 
     @property
