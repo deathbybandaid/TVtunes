@@ -71,7 +71,7 @@ class TVShows():
 
             for tvshow_info in list_library_shows_all:
 
-                print(tvshow_info)
+                print(dir(tvshow_info))
 
                 return
 
