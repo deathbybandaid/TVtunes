@@ -3,7 +3,6 @@ import time
 from TVtunes.tools import humanized_time
 
 from .tvshow import TVShow
-from .show_ident import Show_IDs
 
 
 class TVShows():
@@ -14,8 +13,6 @@ class TVShows():
     def __init__(self, tvtunes, plexinterface):
         self.tvtunes = tvtunes
         self.plexinterface = plexinterface
-
-        self.id_system = Show_IDs(tvtunes)
 
         self.list = {}
 
@@ -36,7 +33,7 @@ class TVShows():
             self.tvtunes.logger.info("Found %s existing shows in the database." % str(len(shows_ids)))
 
         for show_id in shows_ids:
-            show_id_obj = TVShow(self.tvtunes, self.id_system, self.plexinterface, show_id=show_id)
+            show_id_obj = TVShow(self.tvtunes, self.plexinterface, show_id=show_id)
             show_id = show_id_obj.dict["id"]
             self.list[show_id] = show_id_obj
 
@@ -71,11 +68,11 @@ class TVShows():
 
             for tvshow_info in list_library_shows_all:
 
-                print(tvshow_info.guid)
+                show_id = str(tvshow_info.guid).split("plex://show/")[-1]
 
-                return
+                print(show_id)
 
-                show_existing = str(tvshow_info["id"]) in show_id_list
+                show_existing = str(show_id) in show_id_list
 
             library = list_library_shows_all[0].librarySectionTitle
             print(library)
