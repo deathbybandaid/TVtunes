@@ -51,7 +51,7 @@ class TVShows():
 
         else:
 
-            show_id_list = [str(self.list[x].dict["plex_id"]) for x in list(self.list.keys())]
+            show_id_list = [str(self.list[x].dict["id"]) for x in list(self.list.keys())]
 
             if self.tvtunes.config.dict["logging"]["level"].upper() == "NOOB":
                 self.tvtunes.logger.noob("Performing Shows Scan. This Process can take some time, Please Wait.")
