@@ -3,6 +3,7 @@ import time
 from TVtunes.tools import humanized_time
 
 from .tvshow import TVShow
+from .show_ident import Show_IDs
 
 
 class TVShows():
@@ -13,6 +14,8 @@ class TVShows():
     def __init__(self, tvtunes, plexinterface):
         self.tvtunes = tvtunes
         self.plexinterface = plexinterface
+
+        self.id_system = Show_IDs(tvtunes)
 
         self.list = {}
 
@@ -33,7 +36,7 @@ class TVShows():
             self.tvtunes.logger.info("Found %s existing shows in the database." % str(len(shows_ids)))
 
         for show_id in shows_ids:
-            show_id_obj = TVShow(self.tvtunes, self.plexinterface, show_id=show_id)
+            show_id_obj = TVShow(self.tvtunes, self.id_system, self.plexinterface, show_id=show_id)
             show_id = show_id_obj.dict["id"]
             self.list[show_id] = show_id_obj
 
@@ -51,6 +54,8 @@ class TVShows():
 
         else:
 
+            show_id_list = [str(self.list[x].dict["plex_id"]) for x in list(self.list.keys())]
+
             if self.tvtunes.config.dict["logging"]["level"].upper() == "NOOB":
                 self.tvtunes.logger.noob("Performing Shows Scan. This Process can take some time, Please Wait.")
             else:
@@ -63,6 +68,14 @@ class TVShows():
             self.tvtunes.logger.info("Found %s TV Shows in %s Libraries" % (self.plexinterface.total_tv_shows, self.plexinterface.total_tv_libraries))
 
             list_library_shows_all = self.plexinterface.list_library_shows_all
+
+            for tvshow_info in list_library_shows_all:
+
+                print(tvshow_info)
+
+                return
+
+                show_existing = str(tvshow_info["id"]) in show_id_list
 
             library = list_library_shows_all[0].librarySectionTitle
             print(library)
