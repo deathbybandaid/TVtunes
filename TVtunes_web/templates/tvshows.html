@@ -23,9 +23,9 @@
     </thead>
 
     <tbody class="body-half-screen">
-      {% for show_dict in shows_info[library] %}
+      {% for show_dict in list(shows_info[library].keys()) %}
         <tr>
-          <td>{{ show_dict["title"] }}</td>
+          <td>{{ shows_info[library][show_dict]["title"] }}</td>
 
         </tr>
       {% endfor %}
