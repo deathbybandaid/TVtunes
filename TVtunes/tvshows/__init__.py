@@ -75,7 +75,7 @@ class TVShows():
 
                 if show_existing:
                     self.tvtunes.logger.debug("Found Existing show: %s" % tvshow_info.title)
-                    tvshow_obj = self.get_show_obj("show_id", show_id)
+                    tvshow_obj = self.get_show_obj("id", show_id)
 
                 else:
                     self.tvtunes.logger.debug("Creating new show: %s" % tvshow_info.title)
