@@ -73,6 +73,7 @@ class TVShows():
                 print(show_id)
 
                 show_existing = str(show_id) in show_id_list
+                print(show_existing)
 
             library = list_library_shows_all[0].librarySectionTitle
             print(library)
