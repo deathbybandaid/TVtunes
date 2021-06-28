@@ -31,8 +31,12 @@ class TVShows_HTML():
 
         libraries = list(shows_info.keys())
 
-        library = request.args.get('library', default=libraries[0], type=str)
-        if library not in libraries:
-            library = libraries[0]
+        if len(libraries):
+
+            library = request.args.get('library', default=libraries[0], type=str)
+            if library not in libraries:
+                library = libraries[0]
+        else:
+            library = None
 
         return render_template('tvshows.html', request=request, session=session, tvtunes=self.tvtunes, shows_info=shows_info, libraries=libraries, library=library, list=list)
