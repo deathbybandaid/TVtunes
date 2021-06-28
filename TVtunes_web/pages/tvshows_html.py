@@ -6,7 +6,7 @@ class TVShows_HTML():
     endpoint_name = "page_tvshows_html"
     endpoint_access_level = 1
     endpoint_category = "tool_pages"
-    pretty_name = "Versions"
+    pretty_name = "TV Shows"
 
     def __init__(self, tvtunes):
         self.tvtunes = tvtunes
