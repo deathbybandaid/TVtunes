@@ -68,11 +68,9 @@ class TVShows():
 
             for tvshow_info in list_library_shows_all:
 
-                show_id = str(tvshow_info.guid).split("plex://show/")[-1]
+                print(tvshow_info.guid)
 
-                print(show_id)
-
-                show_existing = str(show_id) in show_id_list
+                show_existing = str(tvshow_info.guid) in show_id_list
                 print(show_existing)
 
             library = list_library_shows_all[0].librarySectionTitle
