@@ -100,9 +100,14 @@ class PlexInterface():
 
         show_item = self.plexserver.library.section(library).get(show)
         guids = [str(item_guid.id).split("tvdb://")[-1] for item_guid in show_item.guids if str(item_guid.id).startswith("tvdb")]
-        if not len(guids):
-            return None
-        return guids[0]
+        if len(guids):
+            return guids[0]
+        if "com.plexapp.agents.thetvdb://" in show_item.guid:
+            tvdb_id = str(show_item.guid).split("com.plexapp.agents.thetvdb://")[-1]
+            if "?" in tvdb_id:
+                tvdb_id = tvdb_id.split("?")[0]
+            return tvdb_id
+        return None
 
     @property
     def baseurl(self):
