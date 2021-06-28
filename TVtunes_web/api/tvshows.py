@@ -23,8 +23,8 @@ class TVShows():
 
             shows_info = {}
 
-            for show_id in [x["id"] for x in self.tvtunes.shows.get_shows()]:
-                show_obj = self.tvtunes.shows.list[show_id]
+            for show_id in [x["id"] for x in self.tvtunes.tvshows.get_shows()]:
+                show_obj = self.tvtunes.tvshows.list[show_id]
                 if show_obj:
                     show_dict = show_obj.dict.copy()
                     shows_info[show_obj.title] = show_dict
