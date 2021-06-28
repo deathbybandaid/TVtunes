@@ -22,7 +22,6 @@ class TVShows_HTML():
             show_obj = self.tvtunes.tvshows.list[show_id]
             if show_obj:
                 show_dict = show_obj.dict.copy()
-                show_dict["theme_file"] = show_obj.theme_file
                 show_dict["theme_link"] = show_obj.plexcom_theme_url
                 show_library = show_obj.library
 

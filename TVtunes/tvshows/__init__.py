@@ -18,8 +18,22 @@ class TVShows():
 
         self.get_db_shows()
 
-        self.shows_update_url = "/api/tvshows?method=scan"
+        self.shows_update_url = "/api/tvshows?method=scanplex"
+        self.shows_themescan_url = "/api/tvshows?method=scanfiles"
         self.tvtunes.scheduler.every(4).to(5).hours.do(self.tvtunes.api.threadget, url=self.shows_update_url)
+        self.tvtunes.scheduler.every(5).to(6).hours.do(self.tvtunes.api.threadget, url=self.shows_themescan_url)
+
+    def scanfiles(self):
+        self.tvtunes.logger.info("Performing Shows theme file Scan.")
+        for show_id in list(self.list.keys()):
+            tvshow_obj = self.get_show_obj("id", show_id)
+            show_title = tvshow_obj.dict["title"]
+            self.tvtunes.logger.debug("Scanning %s." % show_title)
+            theme_file = tvshow_obj.theme_file
+            if theme_file:
+                self.tvtunes.logger.debug("Found %s." % theme_file)
+            else:
+                self.tvtunes.logger.debug("Found no theme file for %s." % show_title)
 
     def get_db_shows(self):
         """

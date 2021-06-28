@@ -27,7 +27,6 @@ class TVShows():
                 show_obj = self.tvtunes.tvshows.list[show_id]
                 if show_obj:
                     show_dict = show_obj.dict.copy()
-                    show_dict["theme_file"] = show_obj.theme_file
                     shows_info[show_obj.title] = show_dict
 
             show_info_json = json.dumps(shows_info, indent=4)
@@ -36,8 +35,11 @@ class TVShows():
                             response=show_info_json,
                             mimetype='application/json')
 
-        elif method == "scan":
+        elif method == "scanplex":
             self.tvtunes.tvshows.get_shows(forceupdate=True)
+
+        elif method == "scanfiles":
+            self.tvtunes.tvshows.scanfiles()
 
         if redirect_url:
             if "?" in redirect_url:

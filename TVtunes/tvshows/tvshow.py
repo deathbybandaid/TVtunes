@@ -26,7 +26,8 @@ class TVShow():
 
         return {
                 "id": str(self.show_id),
-                "title": None
+                "title": None,
+                "theme_file": None
                 }
 
     def verify_dict(self):
@@ -53,8 +54,10 @@ class TVShow():
     @property
     def theme_file(self):
         if os.path.isfile(self.theme_file_location):
-            return self.theme_file_location
-        return None
+            self.dict["theme_file"] = self.theme_file_location
+        else:
+            self.dict["theme_file"] = None
+        return self.dict["theme_file"]
 
     @property
     def pms_theme_url(self):
