@@ -60,17 +60,13 @@ class PlexInterface():
     def list_library_shows(self, library):
         if not self.plexserver:
             return []
-
         return self.plexserver.library.section(library).all()
 
     def show_location(self, library, show):
         if not self.plexserver:
             return None
 
-        try:
-            show_item = self.plexserver.library.section(library).get(show)
-        except TypeError:
-            return None
+        show_item = self.plexserver.library.section(library).get(show)
         return show_item.locations[0]
 
     @property
@@ -87,10 +83,7 @@ class PlexInterface():
         if not self.plexserver:
             return None
 
-        try:
-            show_item = self.plexserver.library.section(library).get(show)
-        except TypeError:
-            return None
+        show_item = self.plexserver.library.section(library).get(show)
 
         if not show_item.theme:
             return None
@@ -105,11 +98,7 @@ class PlexInterface():
         if not self.plexserver:
             return None
 
-        try:
-            show_item = self.plexserver.library.section(library).get(show)
-        except TypeError:
-            return None
-
+        show_item = self.plexserver.library.section(library).get(show)
         guids = [str(item_guid.id).split("tvdb://")[-1] for item_guid in show_item.guids if str(item_guid.id).startswith("tvdb")]
         if not len(guids):
             return None
