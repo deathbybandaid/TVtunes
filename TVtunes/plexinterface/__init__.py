@@ -84,6 +84,10 @@ class PlexInterface():
             return None
 
         show_item = self.plexserver.library.section(library).get(show)
+
+        if not show_item.theme:
+            return None
+
         themeid = show_item.theme.split("/")[-1]
         return "%s/library/metadata/%s/theme/%s?X-Plex-Token=%s" % (self.baseurl, show_item.ratingKey, themeid, self.token)
 
