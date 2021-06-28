@@ -20,6 +20,7 @@
       <tr>
         <th>Title</th>
         <th>Theme File</th>
+        <th>PlexCom</th>
       </tr>
     </thead>
 
@@ -28,6 +29,7 @@
         <tr>
           <td>{{ shows_info[library][show_dict]["title"] }}</td>
           <td>{{ shows_info[library][show_dict]["theme_file"] }}</td>
+          <td>{{ shows_info[library][show_dict]["theme_link"] }}</td>
         </tr>
       {% endfor %}
     </tbody>
