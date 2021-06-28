@@ -94,9 +94,9 @@ class TVShows():
             self.tvtunes.logger.info("Found %s NEW shows." % newshow)
 
         self.tvtunes.logger.info("Total Show Count: %s" % len(self.list.keys()))
-        self.save_db_channels()
+        self.save_db_shows()
 
-        self.tvtunes.db.set_tvtunes_value("channels", "scanned_time", time.time())
+        self.tvtunes.db.set_tvtunes_value("shows", "scanned_time", time.time())
         return_show_list.extend([self.list[x].dict for x in list(self.list.keys())])
 
         return return_show_list
@@ -113,11 +113,11 @@ class TVShows():
 
         return None
 
-    def save_db_channels(self, origin=None):
+    def save_db_shows(self, origin=None):
         """
         Save Show listing to the database.
         """
 
         self.tvtunes.logger.debug("Saving shows to database.")
         show_ids = [self.list[x].dict["id"] for x in list(self.list.keys())]
-        self.tvtunes.db.set_tvtunes_value("channels", "list", show_ids)
+        self.tvtunes.db.set_tvtunes_value("shows", "list", show_ids)
