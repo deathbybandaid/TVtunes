@@ -33,9 +33,9 @@ class TVShows():
             self.tvtunes.logger.info("Found %s existing shows in the database." % str(len(shows_ids)))
 
         for show_id in shows_ids:
-            show_id_obj = TVShow(self.tvtunes, self.plexinterface, show_id=show_id)
-            show_id = show_id_obj.dict["id"]
-            self.list[show_id] = show_id_obj
+            tvshow_obj = TVShow(self.tvtunes, self.plexinterface, show_id=show_id)
+            show_id = tvshow_obj.dict["id"]
+            self.list[show_id] = tvshow_obj
 
     def get_shows(self, forceupdate=False):
         """
@@ -68,30 +68,19 @@ class TVShows():
 
             for tvshow_info in list_library_shows_all:
 
-                print(tvshow_info.guid)
+                show_id = tvshow_info.guid
 
-                show_existing = str(tvshow_info.guid) in show_id_list
-                print(show_existing)
+                show_existing = str(show_id) in show_id_list
 
-            library = list_library_shows_all[0].librarySectionTitle
-            print(library)
+                if show_existing:
+                    self.tvtunes.logger.debug("Found Existing show." % tvshow_info.title)
 
-            show_title = list_library_shows_all[0].title
-            print(show_title)
+                else:
+                    self.tvtunes.logger.debug("Creating new show." % tvshow_info.title)
 
-            tvdbid = self.plexinterface.show_tvdbid(library, show_title)
-            print(tvdbid)
+                tvshow_obj = TVShow(self.tvtunes, self.plexinterface, show_id=show_id)
 
-            show_directory = self.plexinterface.show_location(library, show_title)
-            print(show_directory)
-            theme_file_location = "%s/theme.mp3" % show_directory
-            print(theme_file_location)
-
-            theme_file_cache = "%s/%s.mp3" % (self.tvtunes.config.internal["paths"]["mp3_dir"], tvdbid)
-            print(theme_file_cache)
-
-            print(self.plexinterface.show_theme_url(library, show_title))
-            print(self.plexinterface.tvdb_theme_url(tvdbid))
+                tvshow_obj.basics(tvshow_info)
 
             self.tvtunes.logger.info("Shows Import took %s" % (humanized_time(time.time() - show_scan_start)))
 
