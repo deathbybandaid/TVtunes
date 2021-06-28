@@ -25,7 +25,7 @@ class TVShow():
 
         return {
                 "id": str(self.show_id),
-                "name": None
+                "title": None
                 }
 
     def verify_dict(self):
@@ -45,13 +45,13 @@ class TVShow():
 
         self.dict["title"] = tvshow_info.title
 
-        self.dict["tvdbid"] = self.plexinterface.show_tvdbid(self.library, self.show_title)
+        self.dict["tvdbid"] = self.plexinterface.show_tvdbid(self.library, self.title)
 
-        self.dict["directory"] = self.plexinterface.show_location(self.library, self.show_title)
+        self.dict["directory"] = self.plexinterface.show_location(self.library, self.title)
 
     @property
     def pms_theme_url(self):
-        return self.plexinterface.pms_theme_url(self.library, self.show_title)
+        return self.plexinterface.pms_theme_url(self.library, self.title)
 
     @property
     def plexcom_theme_url(self):
