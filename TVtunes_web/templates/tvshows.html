@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  {% if library %}
+    <h4 style="text-align: center;">{{ library }} Shows</h4>
+  {% else %}
+    <h4 style="text-align: center;">Shows</h4>
+  {% endif %}
+
+  <p>
+    {% for library_item in libraries %}
+      <button onclick="location.href='/channels?library={{ library_item }}'" type="button">{{ library_item }}</button>
+    {% endfor %}
+  </p>
+
+{% endblock %}
