@@ -42,12 +42,12 @@ class TVShows():
         Pull shows from Plex.
         """
 
-        return_lib_list = []
+        return_show_list = []
         if not len(list(self.list.keys())):
             self.get_db_shows()
 
         if not forceupdate:
-            return_lib_list.extend([self.list[x].dict for x in list(self.list.keys())])
+            return_show_list.extend([self.list[x].dict for x in list(self.list.keys())])
 
         else:
 
@@ -66,6 +66,7 @@ class TVShows():
 
             list_library_shows_all = self.plexinterface.list_library_shows_all
 
+            newshow = 0
             for tvshow_info in list_library_shows_all:
 
                 show_id = tvshow_info.guid
@@ -74,20 +75,49 @@ class TVShows():
 
                 if show_existing:
                     self.tvtunes.logger.debug("Found Existing show: %s" % tvshow_info.title)
+                    tvshow_obj = self.get_show_obj("show_id", show_id)
 
                 else:
                     self.tvtunes.logger.debug("Creating new show: %s" % tvshow_info.title)
+                    tvshow_obj = TVShow(self.tvtunes, self.plexinterface, show_id=show_id)
 
-                tvshow_obj = TVShow(self.tvtunes, self.plexinterface, show_id=show_id)
+                if not show_existing:
+                    self.list[show_id] = tvshow_obj
+                    newshow += 1
 
                 tvshow_obj.basics(tvshow_info)
 
             self.tvtunes.logger.info("Shows Import took %s" % (humanized_time(time.time() - show_scan_start)))
 
-        return
+            if not newshow:
+                newshow = "no"
+            self.tvtunes.logger.info("Found %s NEW shows." % newshow)
 
-    def get_libraries(self):
-        return
+        self.tvtunes.logger.info("Total Show Count: %s" % len(self.list.keys()))
+        self.save_db_channels()
 
-    def get_library(self):
-        return
+        self.tvtunes.db.set_tvtunes_value("channels", "scanned_time", time.time())
+        return_show_list.extend([self.list[x].dict for x in list(self.list.keys())])
+
+        return return_show_list
+
+    def get_show_obj(self, keyfind, valfind):
+        """
+        Retrieve show object by keyfind property.
+        """
+
+        matches = [self.list[x].dict["id"] for x in list(self.list.keys()) if self.list[x].dict[keyfind] == valfind]
+
+        if len(matches):
+            return self.list[matches[0]]
+
+        return None
+
+    def save_db_channels(self, origin=None):
+        """
+        Save Show listing to the database.
+        """
+
+        self.tvtunes.logger.debug("Saving shows to database.")
+        show_ids = [self.list[x].dict["id"] for x in list(self.list.keys())]
+        self.tvtunes.db.set_tvtunes_value("channels", "list", show_ids)

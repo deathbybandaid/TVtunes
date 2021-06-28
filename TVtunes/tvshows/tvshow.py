@@ -41,24 +41,41 @@ class TVShow():
         Some Show Information is Critical.
         """
 
-        self.library = tvshow_info.librarySectionTitle
-        print(self.library)
+        self.dict["library"] = tvshow_info.librarySectionTitle
 
-        self.show_title = tvshow_info.title
-        print(self.show_title)
+        self.dict["title"] = tvshow_info.title
 
-        self.tvdbid = self.plexinterface.show_tvdbid(self.library, self.show_title)
-        print(self.tvdbid)
+        self.dict["tvdbid"] = self.plexinterface.show_tvdbid(self.library, self.show_title)
 
-        self.show_directory = self.plexinterface.show_location(self.library, self.show_title)
-        print(self.show_directory)
-        self.theme_file_location = "%s/theme.mp3" % self.show_directory
-        print(self.theme_file_location)
+        self.dict["directory"] = self.plexinterface.show_location(self.library, self.show_title)
 
-        self.theme_file_cache = "%s/%s.mp3" % (self.tvtunes.config.internal["paths"]["mp3_dir"], self.tvdbid)
-        print(self.theme_file_cache)
+    @property
+    def pms_theme_url(self):
+        return self.plexinterface.pms_theme_url(self.library, self.show_title)
 
-        print(self.plexinterface.show_theme_url(self.library, self.show_title))
-        print(self.plexinterface.tvdb_theme_url(self.tvdbid))
+    @property
+    def plexcom_theme_url(self):
+        if not self.tvdbid:
+            return None
+        return self.plexinterface.plexcom_theme_url(self.tvdbid)
 
-        return
+    @property
+    def theme_file(self):
+        return "%s/theme.mp3" % self.directory
+
+    @property
+    def theme_file_cache(self):
+        if not self.tvdbid:
+            return None
+        return "%s/%s.mp3" % (self.tvtunes.config.internal["paths"]["mp3_dir"], self.tvdbid)
+
+    def __getattr__(self, name):
+        """
+        Quick and dirty shortcuts. Will only get called for undefined attributes.
+        """
+
+        if name in list(self.dict.keys()):
+            return self.dict[name]
+
+        else:
+            return None
