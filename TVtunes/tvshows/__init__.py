@@ -25,6 +25,7 @@ class TVShows():
 
     def scanfiles(self):
         self.tvtunes.logger.info("Performing Shows theme file Scan.")
+        missing = 0
         for show_id in list(self.list.keys()):
             tvshow_obj = self.get_show_obj("id", show_id)
             show_title = tvshow_obj.dict["title"]
@@ -33,7 +34,9 @@ class TVShows():
             if theme_file:
                 self.tvtunes.logger.debug("Found %s." % theme_file)
             else:
+                missing += 1
                 self.tvtunes.logger.debug("Found no theme file for %s." % show_title)
+        self.tvtunes.logger.info("Shows theme file Scan Complete. %s theme(s) missing." % missing)
 
     def get_db_shows(self):
         """
