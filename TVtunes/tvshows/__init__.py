@@ -73,10 +73,10 @@ class TVShows():
                 show_existing = str(show_id) in show_id_list
 
                 if show_existing:
-                    self.tvtunes.logger.debug("Found Existing show." % tvshow_info.title)
+                    self.tvtunes.logger.debug("Found Existing show: %s" % tvshow_info.title)
 
                 else:
-                    self.tvtunes.logger.debug("Creating new show." % tvshow_info.title)
+                    self.tvtunes.logger.debug("Creating new show: %s" % tvshow_info.title)
 
                 tvshow_obj = TVShow(self.tvtunes, self.plexinterface, show_id=show_id)
 
