@@ -35,4 +35,4 @@ class TVShows_HTML():
         if library not in libraries:
             library = libraries[0]
 
-        return render_template('tvshows.html', request=request, session=session, tvtunes=self.tvtunes, shows_info=shows_info, libraries=libraries, library=library)
+        return render_template('tvshows.html', request=request, session=session, tvtunes=self.tvtunes, shows_info=shows_info, libraries=libraries, library=library, list=list)

@@ -14,4 +14,23 @@
     {% endfor %}
   </p>
 
+  <div class="container">
+  <table class="table-scroll center small-first-col">
+    <thead>
+      <tr>
+        <th>Title</th>
+      </tr>
+    </thead>
+
+    <tbody class="body-half-screen">
+      {% for show_dict in shows_info[library] %}
+        <tr>
+          <td>{{ show_dict["title"] }}</td>
+
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
 {% endblock %}
